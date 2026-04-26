@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
 
         String json = "{"
                 + "\"title\":\"Passion Fruit Plant\","
-                + "\"price\":\"$" + price.getText().toString() + "\","
+                + "\"price\":\"" + price.getText().toString() + "\","
                 + "\"description\":\"Healthy greenhouse-grown passion fruit plant. Guaranteed 1 ft+ at purchase.\","
                 + "\"image\":\"" + imageUrl + "\""
                 + "}";

@@ -164,7 +164,39 @@ public class MainActivity extends Activity {
         int end = response.indexOf("\"", start);
         return response.substring(start, end).replace("\\/", "/");
     }
+    void sendToNetlify(String imageUrl) {
+    try {
+        URL url = new URL("https://symphonious-sunflower-b8b0a0.netlify.app/.netlify/functions/add-listing");
 
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setDoOutput(true);
+
+        String json = "{"
+                + "\"title\":\"Passion Fruit Plant\","
+                + "\"price\":\"$" + price.getText().toString() + "\","
+                + "\"description\":\"Healthy greenhouse-grown passion fruit plant. Guaranteed 1 ft+ at purchase.\","
+                + "\"image\":\"" + imageUrl + "\""
+                + "}";
+
+        OutputStream os = conn.getOutputStream();
+        os.write(json.getBytes());
+        os.flush();
+        os.close();
+
+        int responseCode = conn.getResponseCode();
+
+        runOnUiThread(() -> {
+            toast("Saved to website! Code: " + responseCode);
+        });
+
+    } catch (Exception e) {
+        runOnUiThread(() -> {
+            toast("Netlify failed: " + e.getMessage());
+        });
+    }
+}
     void toast(String s) {
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }

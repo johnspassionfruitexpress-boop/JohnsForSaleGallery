@@ -7,75 +7,54 @@
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#f1ffe8;color:#003b1f}
 .hero{background:linear-gradient(135deg,#006b35,#3caf68);color:white;text-align:center;padding:110px 20px}
-.hero h1{font-size:64px;text-shadow:3px 3px 8px #000}
-.hero p{font-size:22px}
-.btn{background:#ffd800;color:#111;padding:15px 25px;border-radius:30px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:20px}
-section{padding:45px 5%}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:white;padding:25px;border-radius:20px;box-shadow:0 4px 12px #0002}
+.hero h1{font-size:48px}
+.hero p{font-size:18px}
+.btn{background:#ffd800;color:#111;padding:12px 20px;border-radius:30px;text-decoration:none;font-weight:bold}
+section{padding:40px 5%}
 #gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.plant{background:white;border-radius:18px;padding:15px;box-shadow:0 4px 12px #0002}
-.plant img{width:100%;border-radius:14px}
-footer{background:#006b35;color:white;text-align:center;padding:25px}
-.empty{background:white;border-radius:18px;padding:30px;text-align:center}
+.plant{background:white;border-radius:15px;padding:15px;box-shadow:0 4px 10px #0002}
+.plant img{width:100%;border-radius:10px}
+.empty{background:white;padding:25px;border-radius:12px;text-align:center}
 </style>
 </head>
+
 <body>
 
 <div class="hero">
   <h1>Johns Passion Fruit Express</h1>
-  <p>From our greenhouse to your home — organically nurtured, chemical free and cared for with island love.</p>
-  <a class="btn" href="#forsale">View Available Plants</a>
+  <p>Greenhouse Grown • Chemical Free • Island Love</p>
 </div>
 
 <section>
-  <h2>Greenhouse Grown Passion Fruit Plants</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>1ft+ Guaranteed</h3>
-      <p>Healthy plants ready to transplant or keep in pots.</p>
-    </div>
-    <div class="card">
-      <h3>Chemical Free</h3>
-      <p>Raised with natural greenhouse care and strong roots.</p>
-    </div>
-    <div class="card">
-      <h3>Oviedo, Florida</h3>
-      <p>Local pickup available. Bulk options available for serious growers.</p>
-    </div>
-  </div>
-</section>
-
-<section id="forsale">
   <h2>Available For Sale Plants</h2>
-  <p>Fresh listings generated from our Android plant photo app.</p>
   <div id="gallery"></div>
 </section>
 
-<footer>
-  <strong>Johns Passion Fruit Express</strong><br>
-  407-902-8833<br>
-  Greenhouse Grown • Chemical Free • Island Love & Care
-</footer>
-
 <script>
-function loadGallery(){
+async function loadGallery(){
   const gallery = document.getElementById("gallery");
-  const listings = JSON.parse(localStorage.getItem("jpfeListings") || "[]");
 
-  if(listings.length === 0){
-    gallery.innerHTML = `<div class="empty">No for-sale plant photos uploaded yet. Generate one from the Android app and it will appear here.</div>`;
-    return;
+  try {
+    const res = await fetch("/.netlify/functions/list-listings");
+    const listings = await res.json();
+
+    if(!listings.length){
+      gallery.innerHTML = `<div class="empty">No plants yet. Upload from your phone app.</div>`;
+      return;
+    }
+
+    gallery.innerHTML = listings.map(item => `
+      <div class="plant">
+        <img src="${item.image}">
+        <h3>${item.title}</h3>
+        <p><strong>$${item.price}</strong></p>
+        <p>${item.description}</p>
+      </div>
+    `).join("");
+
+  } catch(e) {
+    gallery.innerHTML = `<div class="empty">Loading failed (functions not live yet)</div>`;
   }
-
-  gallery.innerHTML = listings.map(item => `
-    <div class="plant">
-      <img src="${item.image}">
-      <h3>${item.title}</h3>
-      <p><strong>$${item.price}</strong></p>
-      <p>${item.description}</p>
-    </div>
-  `).join("");
 }
 loadGallery();
 </script>

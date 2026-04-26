@@ -1,1 +1,5 @@
-{"scripts":{"dev":"netlify dev"},"dependencies":{"@netlify/blobs":"latest"},"devDependencies":{"netlify-cli":"latest"}}
+{
+  "dependencies": {
+    "@netlify/blobs": "latest"
+  }
+}

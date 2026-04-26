@@ -124,6 +124,63 @@ async function handleUpload() {
   }
 }
 </script>
+<hr style="margin:50px 0;">
 
+<h2>Create New Listing 🌿</h2>
+
+<div style="margin:20px;">
+  <input type="file" id="imageInput">
+  <br><br>
+  <button onclick="handleUpload()">Generate Listing</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+async function uploadToCloudinary(file) {
+  const cloudName = "dqdlmbj0q";
+  const uploadPreset = "johns_passion_upload";
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", uploadPreset);
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+    {
+      method: "POST",
+      body: formData
+    }
+  );
+
+  const data = await response.json();
+  return data.secure_url;
+}
+
+async function handleUpload() {
+  const fileInput = document.getElementById("imageInput");
+  const result = document.getElementById("result");
+
+  if (!fileInput.files.length) {
+    alert("Select an image first");
+    return;
+  }
+
+  result.innerHTML = "Uploading...";
+
+  const imageUrl = await uploadToCloudinary(fileInput.files[0]);
+
+  result.innerHTML = `
+    <h3>Passion Fruit Plant - $25</h3>
+    <img src="${imageUrl}" width="250"/>
+    <p>
+      ✔️ 1ft+ Guaranteed<br>
+      ✔️ Greenhouse Grown<br>
+      ✔️ Chemical Free<br>
+      ✔️ Island Love 🌿
+    </p>
+  `;
+}
+</script>
 </body>
 </html>

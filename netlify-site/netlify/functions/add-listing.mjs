@@ -12,13 +12,10 @@ export default async (req) => {
 
   listings.unshift({
     id: Date.now(),
-    title: item.title || "Passion Fruit Plant",
-    price: item.price || "25",
-    description: item.description || "Greenhouse grown passion fruit plant.",
-    image: item.image
+    ...item
   });
 
-  await store.setJSON("items", listings);
+  await store.set("items", listings);
 
   return Response.json({ success: true });
 };

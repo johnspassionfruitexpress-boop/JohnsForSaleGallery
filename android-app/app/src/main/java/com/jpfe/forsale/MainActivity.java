@@ -97,6 +97,7 @@ public class MainActivity extends Activity {
         new Thread(() -> {
             try {
                 String imageUrl = uploadBitmapToCloudinary(selectedBitmap);
+                sendToNetlify(imageUrl);
 
                 runOnUiThread(() -> {
                     note.setText(

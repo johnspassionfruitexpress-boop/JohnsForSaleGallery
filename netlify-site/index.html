@@ -4,31 +4,147 @@
 <meta charset="UTF-8">
 <title>Johns Passion Fruit Express</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f1ffe8;color:#003b1f}
-.hero{background:linear-gradient(135deg,#006b35,#3caf68);color:white;text-align:center;padding:110px 20px}
-.hero h1{font-size:48px}
-.hero p{font-size:18px}
-.btn{background:#ffd800;color:#111;padding:12px 20px;border-radius:30px;text-decoration:none;font-weight:bold}
-section{padding:40px 5%}
-#gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.plant{background:white;border-radius:15px;padding:15px;box-shadow:0 4px 10px #0002}
-.plant img{width:100%;border-radius:10px}
-.empty{background:white;padding:25px;border-radius:12px;text-align:center}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4ffe9;
+  color:#073b20;
+}
+
+.hero{
+  background:linear-gradient(135deg,#005c2e,#38a85b);
+  color:white;
+  text-align:center;
+  padding:70px 20px;
+}
+
+.logoBox{
+  background:white;
+  display:inline-block;
+  padding:15px;
+  border-radius:22px;
+  box-shadow:0 8px 24px #0004;
+  margin-bottom:20px;
+}
+
+.logoBox img{
+  max-width:220px;
+  display:block;
+}
+
+.hero h1{
+  font-size:42px;
+  margin:10px 0;
+}
+
+.hero p{
+  font-size:18px;
+}
+
+.badges{
+  margin-top:20px;
+}
+
+.badges span{
+  display:inline-block;
+  background:#ffd800;
+  color:#1b1b1b;
+  padding:10px 14px;
+  border-radius:25px;
+  font-weight:bold;
+  margin:5px;
+}
+
+section{
+  padding:40px 5%;
+}
+
+.sectionTitle{
+  text-align:center;
+  font-size:30px;
+  margin-bottom:25px;
+}
+
+#gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:24px;
+}
+
+.plant{
+  background:white;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 8px 24px #0002;
+  border:2px solid #d7f5c6;
+}
+
+.plant img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:16px;
+}
+
+.plant h3{
+  font-size:22px;
+  margin:14px 0 6px;
+}
+
+.price{
+  font-size:24px;
+  font-weight:bold;
+  color:#006b35;
+}
+
+.desc{
+  line-height:1.5;
+}
+
+.empty{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 4px 14px #0002;
+}
+
+.footer{
+  text-align:center;
+  padding:25px;
+  background:#073b20;
+  color:white;
+}
 </style>
 </head>
 
 <body>
 
 <div class="hero">
+  <div class="logoBox">
+    <img src="Logo.png" alt="Johns Passion Fruit Express Logo">
+  </div>
+
   <h1>Johns Passion Fruit Express</h1>
-  <p>Greenhouse Grown • Chemical Free • Island Love</p>
+  <p>From our greenhouse to your home — grown with island love.</p>
+
+  <div class="badges">
+    <span>Chemical Free</span>
+    <span>Greenhouse Grown</span>
+    <span>1 ft+ Guaranteed</span>
+  </div>
 </div>
 
 <section>
-  <h2>Available For Sale Plants</h2>
+  <h2 class="sectionTitle">Available Passion Fruit Plants</h2>
   <div id="gallery"></div>
 </section>
+
+<div class="footer">
+  Johns Passion Fruit Express 🌿 Healthy plants grown with care
+</div>
 
 <script>
 async function loadGallery(){
@@ -39,23 +155,24 @@ async function loadGallery(){
     const listings = await res.json();
 
     if(!listings.length){
-      gallery.innerHTML = `<div class="empty">No plants yet. Upload from your phone app.</div>`;
+      gallery.innerHTML = `<div class="empty">No plants listed yet. Upload from your phone app.</div>`;
       return;
     }
 
     gallery.innerHTML = listings.map(item => `
       <div class="plant">
-        <img src="${item.image}">
+        <img src="${item.image}" alt="${item.title}">
         <h3>${item.title}</h3>
-        <p><strong>$${item.price}</strong></p>
-        <p>${item.description}</p>
+        <div class="price">${item.price}</div>
+        <p class="desc">${item.description}</p>
       </div>
     `).join("");
 
   } catch(e) {
-    gallery.innerHTML = `<div class="empty">Loading failed (functions not live yet)</div>`;
+    gallery.innerHTML = `<div class="empty">Loading failed. Check Netlify functions.</div>`;
   }
 }
+
 loadGallery();
 </script>
 

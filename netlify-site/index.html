@@ -6,211 +6,508 @@
 <title>Johns Passion Fruit Express</title>
 
 <style>
+* { box-sizing: border-box; }
 
 body {
-  margin:0;
-  font-family: "Trebuchet MS", sans-serif;
-  background:#fff8e8;
+  margin: 0;
+  font-family: "Segoe UI", Trebuchet MS, sans-serif;
+  background: #fff7df;
+  color: #18351f;
+  overflow-x: hidden;
 }
 
-/* HEADER */
-header {
-  text-align:center;
-  padding:60px 20px;
-  color:white;
-  background:linear-gradient(135deg,#0b6b3a,#f4b942);
+/* scrolling vine effect */
+.vine-strip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  z-index: 50;
+  pointer-events: none;
+  opacity: .75;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-header img {
-  max-width:160px;
-  background:white;
-  padding:10px;
-  border-radius:20px;
+.vine-strip span {
+  display: inline-block;
+  font-size: 26px;
+  animation: scrollVine 28s linear infinite;
 }
 
-h1 {
-  font-size:2.8rem;
-  margin:15px 0;
+@keyframes scrollVine {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-.tagline {
-  font-weight:bold;
-  color:#ffeaa7;
+/* collage crop system */
+.crop {
+  background-image:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url("passion-collage.png");
+  background-size: 300% 300%;
+  background-repeat: no-repeat;
 }
 
-/* HERO */
+.p1 { background-position: left top; }
+.p2 { background-position: center top; }
+.p3 { background-position: right top; }
+.p4 { background-position: left center; }
+.p5 { background-position: center center; }
+.p6 { background-position: right center; }
+.p7 { background-position: left bottom; }
+.p8 { background-position: center bottom; }
+.p9 { background-position: right bottom; }
+
+/* hero */
 .hero {
-  text-align:center;
-  padding:50px 20px;
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 25px;
+  padding: 80px 7% 60px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,204,84,.7), transparent 25%),
+    radial-gradient(circle at 90% 15%, rgba(58,184,105,.45), transparent 24%),
+    linear-gradient(135deg, #fff1aa, #fff7df 48%, #d9ffd8);
 }
 
-.price {
-  font-size:3rem;
-  font-weight:bold;
-  color:#ff7b00;
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  width: 150px;
+  background: white;
+  border-radius: 28px;
+  padding: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.2);
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  line-height: .95;
+  margin: 25px 0 15px;
+  color: #0d5f34;
+  text-shadow: 3px 3px 0 #ffd166;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 620px;
+  font-weight: 600;
+}
+
+.price-badge {
+  display: inline-block;
+  margin: 22px 0;
+  padding: 13px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff7b00, #ffd166);
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 1000;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.18);
+  box-shadow: 0 10px 25px rgba(0,0,0,.18);
 }
 
 .btn {
-  display:inline-block;
-  padding:15px 25px;
-  margin:10px;
-  border-radius:999px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
-  background:#1f7a3b;
+  display: inline-block;
+  margin: 8px 8px 8px 0;
+  padding: 15px 24px;
+  border-radius: 999px;
+  background: #0d6b39;
+  color: white;
+  text-decoration: none;
+  font-weight: 900;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
 }
 
-/* SECTIONS */
-.section {
-  padding:50px 20px;
-  text-align:center;
-  max-width:1100px;
-  margin:auto;
+.btn.gold { background: #e07a00; }
+
+.hero-photo {
+  min-height: 620px;
+  border-radius: 45px;
+  box-shadow: 0 22px 45px rgba(0,0,0,.25);
+  border: 8px solid white;
 }
 
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:20px;
-  margin-top:30px;
+/* section defaults */
+section {
+  padding: 70px 7%;
 }
 
-/* 🔥 COLLAGE SYSTEM */
-.photo-card {
-  color:white;
-  padding:30px;
-  border-radius:25px;
-  min-height:220px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-shadow:2px 2px 6px black;
+.section-title {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  color: #0d5f34;
+  margin: 0 0 12px;
+}
 
-  background-image:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+.section-sub {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 38px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* story */
+.story-wrap {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.story-photo {
+  min-height: 430px;
+  border-radius: 38px;
+  box-shadow: 0 18px 35px rgba(0,0,0,.2);
+  border: 7px solid white;
+}
+
+.story-box {
+  background: #123d26;
+  color: white;
+  padding: 40px;
+  border-radius: 38px;
+  box-shadow: 0 18px 35px rgba(0,0,0,.18);
+}
+
+.story-box h2 {
+  font-family: Georgia, serif;
+  color: #ffe08a;
+  font-size: 2.5rem;
+  margin-top: 0;
+}
+
+/* features */
+.feature-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.feature {
+  background: white;
+  border-radius: 30px;
+  padding: 26px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  border-bottom: 8px solid #ffd166;
+  text-align: center;
+}
+
+.feature h3 {
+  font-size: 1.35rem;
+  color: #0d5f34;
+}
+
+/* live listings */
+.listings {
+  background:
+    linear-gradient(rgba(13,95,52,.88), rgba(13,95,52,.88)),
+    radial-gradient(circle at 15% 25%, #ffd166, transparent 30%),
+    radial-gradient(circle at 85% 20%, #ff7b54, transparent 25%);
+  color: white;
+}
+
+.listings .section-title,
+.listings .section-sub {
+  color: white;
+}
+
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.listing-card {
+  background: white;
+  color: #17351f;
+  border-radius: 35px;
+  overflow: hidden;
+  box-shadow: 0 18px 35px rgba(0,0,0,.25);
+}
+
+.listing-img {
+  height: 230px;
+}
+
+.listing-info {
+  padding: 24px;
+}
+
+.listing-info h3 {
+  margin: 0;
+  color: #0d5f34;
+  font-size: 1.45rem;
+}
+
+.listing-price {
+  font-size: 2rem;
+  font-weight: 1000;
+  color: #e07a00;
+  margin: 10px 0;
+}
+
+.status {
+  display: inline-block;
+  background: #d8ffd8;
+  color: #0d5f34;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .9rem;
+}
+
+/* care */
+.care {
+  background: #fff0be;
+}
+
+.care-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.care-item {
+  background: white;
+  border-radius: 26px;
+  padding: 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.1);
+}
+
+.care-item h3 {
+  color: #0d5f34;
+}
+
+/* final CTA */
+.final {
+  text-align: center;
+  background:
+    linear-gradient(rgba(255,255,255,.82), rgba(255,255,255,.88)),
     url("passion-collage.png");
-
-  background-size:300% 300%;
-  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-/* 🔥 9 GRID POSITIONS */
-.pos1 { background-position:left top; }
-.pos2 { background-position:center top; }
-.pos3 { background-position:right top; }
-
-.pos4 { background-position:left center; }
-.pos5 { background-position:center center; }
-.pos6 { background-position:right center; }
-
-.pos7 { background-position:left bottom; }
-.pos8 { background-position:center bottom; }
-.pos9 { background-position:right bottom; }
-
-/* TEXT */
-h2 {
-  color:#146b3a;
-  font-size:2.2rem;
+.final-box {
+  max-width: 780px;
+  margin: auto;
+  background: rgba(255,255,255,.92);
+  padding: 45px 25px;
+  border-radius: 40px;
+  box-shadow: 0 18px 38px rgba(0,0,0,.2);
 }
 
 footer {
-  background:#102b1d;
-  color:white;
-  padding:40px;
-  text-align:center;
+  text-align: center;
+  padding: 38px 20px;
+  background: #102b1d;
+  color: white;
 }
 
+@media (max-width: 850px) {
+  .hero,
+  .story-wrap,
+  .feature-row,
+  .listing-grid,
+  .care-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 75px;
+  }
+
+  .hero-photo {
+    min-height: 390px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header>
-  <img src="Logo.png">
-  <h1>Johns Passion Fruit Express</h1>
-  <div class="tagline">Family Grown • Island Loved</div>
+<div class="vine-strip">
+  <span>🌿 🍃 🌱 🌿 🍃 🌱 🌿 🍃 🌱 🌿 🍃 🌱 🌿 🍃 🌱 🌿 🍃 🌱 🌿 🍃 🌱 🌿 🍃 🌱</span>
+</div>
+
+<header class="hero">
+  <div class="hero-text">
+    <img class="logo" src="Logo.png" alt="Johns Passion Fruit Express Logo">
+    <h1>Island-Grown Passion Fruit Plants</h1>
+    <p>
+      Family-raised passion fruit plants grown with greenhouse care, natural methods,
+      and real island love.
+    </p>
+
+    <div class="price-badge">$25 Each</div>
+    <p><strong>Guaranteed 1 ft+ tall at time of purchase</strong></p>
+
+    <a class="btn" href="tel:4079028833">Call / Text 407-902-8833</a>
+    <a class="btn gold" href="#live-listings">See Available Plants</a>
+  </div>
+
+  <div class="hero-photo crop p1"></div>
 </header>
 
-<section class="hero">
-  <h2>Bring the Tropics Home</h2>
-  <p>Healthy passion fruit plants grown with real care.</p>
+<section>
+  <div class="story-wrap">
+    <div class="story-photo crop p8"></div>
 
-  <div class="price">$25 Each</div>
-  <p><strong>Guaranteed 1 ft+ tall</strong></p>
-
-  <a class="btn" href="tel:4079028833">Call / Text</a>
+    <div class="story-box">
+      <h2>From Our Greenhouse to Your Home</h2>
+      <p>
+        Johns Passion Fruit Express is a family-owned nursery focused on healthy tropical plants,
+        strong roots, vibrant growth, and helping local growers bring passion fruit into their own yards.
+      </p>
+      <p>
+        Our plants are greenhouse raised, chemical free, and cared for by hand until they are ready
+        for pickup.
+      </p>
+    </div>
+  </div>
 </section>
 
-<!-- WHY US -->
-<section class="section">
-  <h2>Why Choose Our Nursery</h2>
+<section>
+  <h2 class="section-title">Why Customers Choose Us</h2>
+  <p class="section-sub">
+    This is more than a quick plant sale. We raise our plants with care, check their growth,
+    and make sure they are ready before they leave the nursery.
+  </p>
 
-  <div class="cards">
-    <div class="photo-card pos1">
+  <div class="feature-row">
+    <div class="feature">
       <h3>🌿 Chemical Free</h3>
-      <p>Clean, natural growing methods.</p>
+      <p>Grown naturally without harsh chemical treatment.</p>
     </div>
 
-    <div class="photo-card pos2">
-      <h3>🏡 Greenhouse Grown</h3>
-      <p>Protected for strong healthy growth.</p>
+    <div class="feature">
+      <h3>🏡 Greenhouse Raised</h3>
+      <p>Protected while young for healthier growth.</p>
     </div>
 
-    <div class="photo-card pos3">
-      <h3>🌴 Island Care</h3>
-      <p>Raised with patience and pride.</p>
-    </div>
-  </div>
-</section>
-
-<!-- NURSERY -->
-<section class="section">
-  <h2>Our Growing Nursery</h2>
-
-  <div class="cards">
-    <div class="photo-card pos4">
-      <h3>🌱 Starter Plants</h3>
-      <p>Healthy plants ready to grow.</p>
+    <div class="feature">
+      <h3>📏 1 ft+ Guaranteed</h3>
+      <p>Every listed plant is at least one foot tall.</p>
     </div>
 
-    <div class="photo-card pos5">
-      <h3>🌿 Strong Roots</h3>
-      <p>Focused on root strength and growth.</p>
-    </div>
-
-    <div class="photo-card pos6">
-      <h3>🌞 Backyard Ready</h3>
-      <p>Perfect for trellises and gardens.</p>
+    <div class="feature">
+      <h3>🌴 Island Love</h3>
+      <p>Family cared for with pride and patience.</p>
     </div>
   </div>
 </section>
 
-<!-- AUDIENCE -->
-<section class="section">
-  <h2>Perfect For</h2>
+<section id="live-listings" class="listings">
+  <h2 class="section-title">Live Plant Listings</h2>
+  <p class="section-sub">
+    Current available plant examples. This section can later connect to your auto-listing app.
+  </p>
 
-  <div class="cards">
-    <div class="photo-card pos7">
-      <h3>🌺 Gardeners</h3>
-      <p>Add tropical vines to your space.</p>
+  <div class="listing-grid">
+
+    <div class="listing-card">
+      <div class="listing-img crop p2"></div>
+      <div class="listing-info">
+        <span class="status">Available Now</span>
+        <h3>Passion Fruit Plant</h3>
+        <div class="listing-price">$25</div>
+        <p>Healthy greenhouse-raised plant, guaranteed 1 ft+ tall.</p>
+        <a class="btn" href="sms:4079028833">Ask About This Plant</a>
+      </div>
     </div>
 
-    <div class="photo-card pos8">
-      <h3>🌱 Plant Lovers</h3>
-      <p>Grow something unique and rewarding.</p>
+    <div class="listing-card">
+      <div class="listing-img crop p6"></div>
+      <div class="listing-info">
+        <span class="status">Limited Supply</span>
+        <h3>Backyard Starter Plant</h3>
+        <div class="listing-price">$25</div>
+        <p>Great for trellis, fence, arch, patio container, or sunny garden area.</p>
+        <a class="btn" href="sms:4079028833">Check Availability</a>
+      </div>
     </div>
 
-    <div class="photo-card pos9">
-      <h3>🍹 Fruit Fans</h3>
-      <p>Start your passion fruit journey.</p>
+    <div class="listing-card">
+      <div class="listing-img crop p3"></div>
+      <div class="listing-info">
+        <span class="status">Nursery Pick</span>
+        <h3>Tropical Vine Starter</h3>
+        <div class="listing-price">$25</div>
+        <p>Beautiful passion fruit vine growth with tropical garden potential.</p>
+        <a class="btn" href="sms:4079028833">Message Us</a>
+      </div>
     </div>
+
+  </div>
+</section>
+
+<section class="care">
+  <h2 class="section-title">Quick Care Guide</h2>
+  <p class="section-sub">
+    Simple care tips to help your passion fruit plant adjust after pickup.
+  </p>
+
+  <div class="care-grid">
+    <div class="care-item">
+      <h3>☀️ Sun</h3>
+      <p>Passion fruit loves bright light and strong sun once adjusted.</p>
+    </div>
+
+    <div class="care-item">
+      <h3>💧 Water</h3>
+      <p>Keep moist, but never let the roots sit in standing water.</p>
+    </div>
+
+    <div class="care-item">
+      <h3>🌿 Support</h3>
+      <p>Give the vine a trellis, arch, fence, or frame to climb.</p>
+    </div>
+
+    <div class="care-item">
+      <h3>🪴 Soil</h3>
+      <p>Use well-draining soil for healthier roots.</p>
+    </div>
+
+    <div class="care-item">
+      <h3>❄️ Cold</h3>
+      <p>Protect young plants during cold snaps or freeze warnings.</p>
+    </div>
+
+    <div class="care-item">
+      <h3>🌱 Adjustment</h3>
+      <p>Give your plant a few days to settle before heavy feeding.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="final-box">
+    <h2 class="section-title">Ready to Grow Passion Fruit?</h2>
+    <p>
+      Call or text to confirm current availability. Plants move as batches become ready,
+      so message first before pickup.
+    </p>
+
+    <a class="btn" href="tel:4079028833">Call Now</a>
+    <a class="btn gold" href="sms:4079028833">Text 407-902-8833</a>
   </div>
 </section>
 
 <footer>
   <p><strong>Johns Passion Fruit Express</strong></p>
-  <p>Call/Text: 407-902-8833</p>
+  <p>Passion Fruit Plants • Seeds • Cuttings</p>
+  <p>Family-owned nursery care with island love</p>
 </footer>
 
 </body>

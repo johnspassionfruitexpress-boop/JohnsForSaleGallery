@@ -1,180 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Johns Passion Fruit Express</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Johns Passion Fruit Express</title>
 
-<style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4ffe9;
-  color:#073b20;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fffdf5;
+      color: #1d321f;
+    }
 
-.hero{
-  background:linear-gradient(135deg,#005c2e,#38a85b);
-  color:white;
-  text-align:center;
-  padding:70px 20px;
-}
+    header {
+      background: linear-gradient(135deg, #1f7a32, #86c232);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
 
-.logoBox{
-  background:white;
-  display:inline-block;
-  padding:15px;
-  border-radius:22px;
-  box-shadow:0 8px 24px #0004;
-  margin-bottom:20px;
-}
+    header img {
+      max-width: 160px;
+      background: white;
+      border-radius: 18px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
 
-.logoBox img{
-  max-width:220px;
-  display:block;
-}
+    h1 {
+      margin: 10px 0;
+      font-size: 2.5rem;
+    }
 
-.hero h1{
-  font-size:42px;
-  margin:10px 0;
-}
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
 
-.hero p{
-  font-size:18px;
-}
+    .hero {
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-.badges{
-  margin-top:20px;
-}
+    .hero h2 {
+      font-size: 2rem;
+      color: #2c6b2f;
+    }
 
-.badges span{
-  display:inline-block;
-  background:#ffd800;
-  color:#1b1b1b;
-  padding:10px 14px;
-  border-radius:25px;
-  font-weight:bold;
-  margin:5px;
-}
+    .price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #d97706;
+      margin: 20px 0;
+    }
 
-section{
-  padding:40px 5%;
-}
+    .button-row {
+      margin-top: 25px;
+    }
 
-.sectionTitle{
-  text-align:center;
-  font-size:30px;
-  margin-bottom:25px;
-}
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 25px;
+      background: #2f7d32;
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
 
-#gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:24px;
-}
+    .btn.secondary {
+      background: #d97706;
+    }
 
-.plant{
-  background:white;
-  border-radius:20px;
-  padding:16px;
-  box-shadow:0 8px 24px #0002;
-  border:2px solid #d7f5c6;
-}
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
 
-.plant img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:16px;
-}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
 
-.plant h3{
-  font-size:22px;
-  margin:14px 0 6px;
-}
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
 
-.price{
-  font-size:24px;
-  font-weight:bold;
-  color:#006b35;
-}
-
-.desc{
-  line-height:1.5;
-}
-
-.empty{
-  background:white;
-  padding:25px;
-  border-radius:14px;
-  text-align:center;
-  box-shadow:0 4px 14px #0002;
-}
-
-.footer{
-  text-align:center;
-  padding:25px;
-  background:#073b20;
-  color:white;
-}
-</style>
+    footer {
+      background: #1d321f;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="hero">
-  <div class="logoBox">
-    <img src="Logo.png" alt="Johns Passion Fruit Express Logo">
-  </div>
-
+<header>
+  <img src="Logo.png" alt="Johns Passion Fruit Express Logo">
   <h1>Johns Passion Fruit Express</h1>
-  <p>From our greenhouse to your home — grown with island love.</p>
+  <div class="tagline">Healthy Passion Fruit Plants — Grown with Island Love</div>
+</header>
 
-  <div class="badges">
-    <span>Chemical Free</span>
-    <span>Greenhouse Grown</span>
-    <span>1 ft+ Guaranteed</span>
+<section class="hero">
+  <h2>Passion Fruit Plants Available Now</h2>
+  <p>Greenhouse grown, chemical free, and thriving.</p>
+
+  <div class="price">$25 Each</div>
+  <p><strong>Guaranteed 1 ft+ tall at time of purchase</strong></p>
+
+  <div class="button-row">
+    <a class="btn" href="tel:4079028833">Call / Text 407-902-8833</a>
+    <a class="btn secondary" href="#">View Listings (Coming Soon)</a>
   </div>
-</div>
-
-<section>
-  <h2 class="sectionTitle">Available Passion Fruit Plants</h2>
-  <div id="gallery"></div>
 </section>
 
-<div class="footer">
-  Johns Passion Fruit Express 🌿 Healthy plants grown with care
-</div>
+<section class="section">
+  <h2>Why Buy From Us?</h2>
 
-<script>
-async function loadGallery(){
-  const gallery = document.getElementById("gallery");
+  <div class="cards">
+    <div class="card">
+      <h3>🌿 Chemical Free</h3>
+      <p>No harsh chemicals — naturally grown and safe.</p>
+    </div>
 
-  try {
-    const res = await fetch("/.netlify/functions/list-listings");
-    const listings = await res.json();
+    <div class="card">
+      <h3>🏡 Greenhouse Grown</h3>
+      <p>Protected environment for strong, healthy plants.</p>
+    </div>
 
-    if(!listings.length){
-      gallery.innerHTML = `<div class="empty">No plants listed yet. Upload from your phone app.</div>`;
-      return;
-    }
+    <div class="card">
+      <h3>💚 Island Love & Care</h3>
+      <p>Every plant is nurtured with attention and passion.</p>
+    </div>
+  </div>
+</section>
 
-    gallery.innerHTML = listings.map(item => `
-      <div class="plant">
-        <img src="${item.image}" alt="${item.title}">
-        <h3>${item.title}</h3>
-        <div class="price">${item.price}</div>
-        <p class="desc">${item.description}</p>
-      </div>
-    `).join("");
+<section class="section">
+  <h2>From Our Greenhouse to Your Home</h2>
+  <p>
+    From our greenhouse to your home, our passion fruit plants are grown the natural way —
+    organically nurtured, chemical free and cared for with island love.
+    Strong roots, vibrant growth and ready to thrive.
+  </p>
+</section>
 
-  } catch(e) {
-    gallery.innerHTML = `<div class="empty">Loading failed. Check Netlify functions.</div>`;
-  }
-}
-
-loadGallery();
-</script>
+<footer>
+  <p><strong>Johns Passion Fruit Express</strong></p>
+  <p>Passion Fruit Plants • Seeds • Cuttings</p>
+  <p>📞 407-902-8833</p>
+</footer>
 
 </body>
 </html>
